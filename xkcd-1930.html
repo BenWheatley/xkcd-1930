@@ -1,0 +1,69 @@
+<!-- Based on https://xkcd.com/1930/ by Randall Munroe; Originally licenced as Attribution-NonCommercial 2.5 Generic (CC BY-NC 2.5) — see https://creativecommons.org/licenses/by-nc/2.5/ — which is what I'm trying to tell GitHub I want too if I can figure out how, but otherwise I will settle for something that looks like it has the same effects. -->
+<html>
+<head>
+<script>
+function makeCalendarFact() {
+	var headline = document.getElementById("fact");
+	
+	var fact = "Did you know that " + part1() + " " + part2() + " because of " + part3() + "? Apparently " + part4() + ".";
+	
+	headline.innerHTML = fact;
+}
+
+function randInt(lessThan) {
+	return Math.floor(Math.random()*Math.floor(lessThan));
+}
+
+function pick(arr) {
+	return arr[randInt(arr.length)];
+}
+
+function part1() {
+	switch (randInt(8)) {
+	case 0: return "the " + pick(["fall", "spring"]) + " equinox";
+	case 1: return "the " + pick(["winter", "summer"]) + " " + pick(["solstice", "Olympics"]);
+	case 2: return "daylight " + pick(["saving", "savings"]) + " time";
+	case 3: return "leap " + pick(["day", "year"]);
+	case 4: return "Easter";
+	case 5: return "the " + pick(["super", "harvest", "blood"]) + " moon";
+	case 6: return "Toyota truck month";
+	case 7: return "shark week";
+	}
+}
+
+function part2() {
+	switch (randInt(3)) {
+	case 0: return "happens " + pick(["earlier", "later", "at the wrong time"]) + " every year";
+	case 1: return "drifts out of sync with the " + pick(["sun", "moon", "zodiac", pick(["Gregorian", "Mayan", "Lunar", "iPhone"])+" calendar", "atomic clock in Colorado"]);
+	case 2: return "might " + pick(["not happen", "happen twice"]) + " this year";
+	}
+}
+
+function part3() {
+	switch (randInt(5)) {
+	case 0: return "time zone legislation in " + pick(["Indiana", "Arizona", "Russia"]);
+	case 1: return "a decree by the Pope in the 1500s";
+	case 2: return pick(["precession", "libration", "nutation", "libation", "eccentricity", "obliquity"]) + " of the " + pick(["moon", "sun", "Earth's axis", "equator", "prime meridian", pick(["international date", "Mason-Dixon"])+" line"]);
+	case 3: return "magnetic field reversal";
+	case 4: return "an arbitrary decision by " + pick(["Benjamin Franklin", "Isaac Newton", "FDR"]);
+	}
+}
+
+function part4() {
+	switch (randInt(6)) {
+	case 0: return "it causes a predictable increase in car accidents";
+	case 1: return "that's why we have leap seconds";
+	case 2: return "scientists are really worried";
+	case 3: return "it was even more extreme during the " + pick(["bronze age", "ice age", "cretaceous", "1990s"]);
+	case 4: return "there's a proposal to fix it, but it " + pick(["will never happen", "actually makes things worse", "is stalled in congress", "might be unconstitutional"]);
+	case 5: return "it's getting worse and no one knows why";
+	}
+}
+
+</script>
+</head>
+<body onload="makeCalendarFact();" onKeyUp="makeCalendarFact();">
+<h1 id="fact"></h1>
+<button onclick="makeCalendarFact();">Another!</button>
+</body>
+</html>
